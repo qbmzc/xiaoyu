@@ -3,6 +3,7 @@
 import os
 import pandas as pd
 
+# filename 文件名称，file_num 拆分的数量
 def file_split(filename,file_num,header=True):
     if header:
         chunksize=1000000
@@ -34,10 +35,10 @@ def file_split(filename,file_num,header=True):
         data2 = pd.read_table(filename, chunksize = chunksize ,header=None, sep=',')
         i = 0 #定文件名
         for chunk in data2:
-            chunk.to_csv('{0}_{1}{2}'.format(head, i, tail),header=None,index=False)
+            chunk.to_csv('{0}_{1}{2}'.format(head, i, tail),header=None,index=False) 
             print('保存第{0}个数据'.format(i))
             i += 1
     
 if __name__ == '__main__':
-    filename = '/data/Cong/test1.txt' # 这里修改为自己的文件位置
+    filename = '/data/Cong/test1.csv' # 这里修改为自己的文件位置
     file_split(filename, 20, header=False)
